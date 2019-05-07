@@ -1,0 +1,135 @@
+{
+    "title": "Azure SQL Database replication links",
+    "description": "Provides read, delete, and failover functionality for Azure SQL Database replication links.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/sql-replicationLinks/2014-04-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "ReplicationLinks_ListByDatabase": {
+            "main": "./lib/actions/ReplicationLinks_ListByDatabase.js",
+            "title": "Lists a database's replication links.",
+            "description": "Lists a database's replication links.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ReplicationLinks_ListByDatabase.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ReplicationLinks_Delete": {
+            "main": "./lib/actions/ReplicationLinks_Delete.js",
+            "title": "Deletes a database replication link. Cannot be done during failover.",
+            "description": "Deletes a database replication link. Cannot be done during failover.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ReplicationLinks_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ReplicationLinks_Get": {
+            "main": "./lib/actions/ReplicationLinks_Get.js",
+            "title": "Gets a database replication link.",
+            "description": "Gets a database replication link.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ReplicationLinks_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ReplicationLinks_Failover": {
+            "main": "./lib/actions/ReplicationLinks_Failover.js",
+            "title": "Sets which replica database is primary by failing over from the current primary replica database.",
+            "description": "Sets which replica database is primary by failing over from the current primary replica database.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ReplicationLinks_Failover.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ReplicationLinks_FailoverAllowDataLoss": {
+            "main": "./lib/actions/ReplicationLinks_FailoverAllowDataLoss.js",
+            "title": "Sets which replica database is primary by failing over from the current primary replica database. This operation might result in data loss.",
+            "description": "Sets which replica database is primary by failing over from the current primary replica database. This operation might result in data loss.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ReplicationLinks_FailoverAllowDataLoss.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

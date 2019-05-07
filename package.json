@@ -1,0 +1,15 @@
+{
+    "name": "azure-com-sql-replication-links-connector",
+    "version": "2014.0.0",
+    "description": "Provides read, delete, and failover functionality for Azure SQL Database replication links.",
+    "main": "component.json",
+    "dependencies": {
+        "elasticio-node": "0.0.9",
+        "elasticio-sailor-nodejs": "^2.2.1",
+        "swagger-client": "^3.8.22"
+    },
+    "author": {
+        "name": "Deutsche Telekom AG"
+    },
+    "license": "Apache-2.0"
+}
